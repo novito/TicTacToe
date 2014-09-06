@@ -1,7 +1,8 @@
 require 'human_player'
+require 'spec_helper'
 
 describe HumanPlayer do
-  let(:human_player) { create(:human_player, name: 'Hommer Simpson') }
+  let(:human_player) { FactoryGirl.build(:human_player, name: 'Hommer Simpson') }
 
   describe '#initialize' do
     context 'when name is blank' do
@@ -12,9 +13,15 @@ describe HumanPlayer do
 
     context 'when name is not blank' do
       it 'should instantiate with a valid name' do
-        new_human_player = HumanPlayer.new('Hommer')
-        expect(new_human_player).to be_a(HumanPlayer)
+        flanders = HumanPlayer.new('Flanders')
+        expect(flanders).to be_a(HumanPlayer)
       end
+    end
+  end
+
+  describe '#name' do
+    it 'should return the name of the player' do
+      expect(human_player.name).to eql('Hommer Simpson')
     end
   end
 end
