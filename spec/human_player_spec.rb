@@ -24,4 +24,10 @@ describe HumanPlayer do
       expect(human_player.name).to eql('Hommer Simpson')
     end
   end
+
+  describe '#initial' do
+    it 'should return the first letter of the name (uppercase)' do
+      expect(human_player.initial).to eql('H')
+    end
+  end
 end
