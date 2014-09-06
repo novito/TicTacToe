@@ -30,7 +30,7 @@ class Game
   def start
     print "Do you want to start? (y/n):"
     human_starts = gets.chomp
-    human_starts == 'y' ? play(human_player, machine_player) : play(machine_player, human_player)
+    human_starts[0].downcase == 'y' ? play(human_player, machine_player) : play(machine_player, human_player)
   end
 
   def play(current_player, adversary)

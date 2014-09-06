@@ -57,4 +57,19 @@ describe 'Game' do
       end
     end
   end
+
+  describe '#play' do
+    let(:human_player) { build(:human_player) }
+    let(:machine_player) { build(:machine_player) }
+
+    context 'when a player is able to place three in a row' do
+      it 'finishes the game with a winner' do
+      end
+    end
+
+    context 'when no player is able to place three in a row' do
+      it 'finishes the game in a tie' do
+      end
+    end
+  end
 end
