@@ -62,7 +62,12 @@ describe 'Game' do
     let(:human_player) { build(:human_player) }
     let(:machine_player) { build(:machine_player) }
 
-    context 'when a player is able to place three in a row' do
+    it 'prints the board' do
+      expect(game.grid).to receive(:draw)
+      game.play(human_player, machine_player)
+    end
+
+    context 'when one player is able to place three in a row' do
       it 'finishes the game with a winner' do
       end
     end

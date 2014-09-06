@@ -34,5 +34,6 @@ class Game
   end
 
   def play(current_player, adversary)
+    grid.draw
   end
 end
