@@ -1,12 +1,6 @@
-class MachinePlayer
-  attr_reader :name
+require 'player'
 
-  def initialize(name)
-    raise ArgumentError, "Name can't be blank" if name.nil? || name.strip.empty?
-    @name = name
-  end
+require 'player'
 
-  def initial
-    name[0].upcase
-  end
+class MachinePlayer < Player
 end
