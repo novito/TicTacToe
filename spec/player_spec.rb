@@ -1,4 +1,4 @@
-require 'human_player'
+require 'player'
 require 'spec_helper'
 
 describe Player do
