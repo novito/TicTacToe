@@ -9,5 +9,12 @@ describe HumanPlayer do
         expect {HumanPlayer.new(' ')}.to raise_error(ArgumentError)
       end
     end
+
+    context 'when name is not blank' do
+      it 'should instantiate with a valid name' do
+        new_human_player = HumanPlayer.new('Hommer')
+        expect(new_human_player).to be_a(HumanPlayer)
+      end
+    end
   end
 end
