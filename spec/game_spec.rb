@@ -2,7 +2,13 @@ require 'spec_helper'
 require 'game'
 
 describe 'Game' do
-  let(:game) { Game.new }
+  let(:game) { build(:game) }
+
+  describe '#initialize' do
+    it 'creates a new 3 dimension grid' do
+      expect(game.grid.dimension).to eq(3)
+    end
+  end
 
   describe '#welcome_message' do
     it 'should print a welcome message' do
@@ -23,6 +29,32 @@ describe 'Game' do
       allow(game).to receive(:gets).and_return('Machine name')
       game.set_machine_player
       expect(game.machine_player).to be_a(MachinePlayer)
+    end
+  end
+
+  describe '#start' do
+    let(:human_player) { build(:human_player) }
+    let(:machine_player) { build(:machine_player) }
+
+    before(:each) do
+      allow(game).to receive(:human_player).and_return(human_player)
+      allow(game).to receive(:machine_player).and_return(machine_player)
+    end
+
+    context 'when human chooses to start' do
+      it 'should start playing the human' do
+        allow(game).to receive(:gets).and_return('y')
+        expect(game).to receive(:play).with(human_player, machine_player)
+        game.start
+      end
+    end
+
+    context 'when human chooses to go second' do
+      it 'should start playing the machine' do 
+        allow(game).to receive(:gets).and_return('n')
+        expect(game).to receive(:play).with(machine_player, human_player)
+        game.start
+      end
     end
   end
 end

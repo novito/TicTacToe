@@ -1,8 +1,13 @@
 require 'human_player'
 require 'machine_player'
+require 'grid'
 
 class Game
-  attr_reader :human_player, :machine_player
+  attr_reader :human_player, :machine_player, :grid, :starter
+
+  def initialize
+    @grid = Grid.new
+  end
 
   def welcome_message
     puts '#########################################'
@@ -20,5 +25,14 @@ class Game
     print "Write the name of your AI opponent:"
     machine_player_name = gets.chomp
     @machine_player = MachinePlayer.new(machine_player_name)
+  end
+
+  def start
+    print "Do you want to start? (y/n):"
+    human_starts = gets.chomp
+    human_starts == 'y' ? play(human_player, machine_player) : play(machine_player, human_player)
+  end
+
+  def play(current_player, adversary)
   end
 end
