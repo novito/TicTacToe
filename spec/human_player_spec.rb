@@ -2,7 +2,7 @@ require 'human_player'
 require 'spec_helper'
 
 describe HumanPlayer do
-  let(:human_player) { FactoryGirl.build(:human_player, name: 'Hommer Simpson') }
+  let(:human_player) { build(:human_player, name: 'Hommer Simpson') }
 
   describe '#initialize' do
     context 'when name is blank' do
