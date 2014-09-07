@@ -9,4 +9,11 @@ describe 'Grid' do
       expect(grid.dimension).to eq(3)
     end
   end
+
+  describe '#draw' do
+    it 'draws the grid' do
+      allow(grid).to receive(:status).and_return(['J','J','J',nil,nil,nil,nil,nil,nil])
+      expect { grid.draw }.to output(/J \| J \| J/).to_stdout
+    end
+  end
 end
