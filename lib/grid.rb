@@ -2,17 +2,21 @@ class Grid
   COLUMN_SEPARATOR = " | "
   ROW_SEPARATOR = " \n-----------\n "
 
-  attr_reader :dimension
+  attr_reader :dimension, :status, :winner_combinations
 
   def initialize
     @dimension = 3
-    @winner_rows = [
+    @winner_combinations = [
       [0,1,2],[3,4,5],
       [6,7,8],[0,3,6],
       [1,4,7],[2,5,8],
       [0,4,8],[2,4,6]
     ]
     @status = Array.new(dimension*dimension)
+  end
+
+  def size
+    dimension * dimension
   end
 
   def draw
@@ -24,6 +28,29 @@ class Grid
     puts
     puts " #{row_and_column_separated}"
     puts
+  end
+
+  def mark_cell(cell_number, mark)
+    status[cell_number] = mark
+  end
+
+  def free_cells
+    status.each_index.select { |i| status[i].nil? }
+  end
+
+  def has_winner?
+    winner_combinations.each do |win_comb|
+      matching_values = win_comb.map { |cell_number| status[cell_number] }
+      if matching_values.uniq.length == 1 && !matching_values.first.nil?
+        return true
+      end
+    end
+
+    return false
+  end
+
+  def has_tie?
+    free_cells.size == 0
   end
 
   private

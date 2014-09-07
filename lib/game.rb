@@ -35,5 +35,20 @@ class Game
 
   def play(current_player, adversary)
     grid.draw
+
+    cell_number = current_player.play(grid, adversary)
+    grid.mark_cell(cell_number, current_player.initial)
+
+    if grid.has_winner?
+      finish(current_player)
+    elsif grid.has_tie?
+      finish
+    else
+      play(adversary, current_player)
+    end
+  end
+
+  def finish(winner = nil)
+    winner.nil? ? "Nobody wins. It's a tie!" : "We have a winner! Congrats #{winner.name}"
   end
 end

@@ -62,18 +62,25 @@ describe 'Game' do
     let(:human_player) { build(:human_player) }
     let(:machine_player) { build(:machine_player) }
 
-    it 'prints the board' do
-      expect(game.grid).to receive(:draw)
-      game.play(human_player, machine_player)
-    end
-
     context 'when one player is able to place three in a row' do
       it 'finishes the game with a winner' do
+        allow(machine_player).to receive(:play).and_return(0,1,2)
+        allow(human_player).to receive(:play).and_return(3,7,8)
+        allow(game).to receive(:finish).and_return("We have a winner! Congrats #{machine_player.name}")
+        allow(game.grid).to receive(:draw)
+
+        expect(game.play(human_player, machine_player)).to eq("We have a winner! Congrats #{machine_player.name}")
       end
     end
 
     context 'when no player is able to place three in a row' do
       it 'finishes the game in a tie' do
+        allow(machine_player).to receive(:play).and_return(0,2,4,7)
+        allow(human_player).to receive(:play).and_return(1,3,5,6,8)
+        allow(game).to receive(:finish).and_return("Nobody wins. It's a tie!")
+        allow(game.grid).to receive(:draw)
+
+        expect(game.play(human_player, machine_player)).to eq("Nobody wins. It's a tie!")
       end
     end
   end

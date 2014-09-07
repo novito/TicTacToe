@@ -15,7 +15,7 @@ class HumanPlayer < Player
       play(grid, adversary)
     end
 
-    if board.free_cells.include?(cell_number)
+    if grid.free_cells.include?(cell_number)
       return cell_number
     else
       puts NOT_FREE_CELL_ERROR_MESSAGE
