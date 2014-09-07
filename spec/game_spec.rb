@@ -3,7 +3,6 @@ require 'game'
 
 describe 'Game' do
   let(:game) { build(:game) }
-
   describe '#initialize' do
     it 'creates a new 3 dimension grid' do
       expect(game.grid.dimension).to eq(3)
