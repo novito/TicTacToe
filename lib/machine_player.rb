@@ -13,6 +13,8 @@ class MachinePlayer < Player
     best_play(grid, 0, self, opponent)
   end
 
+  private
+
   def best_play(grid, depth, current_player, opponent, scores={})
     return -1 if grid.winner
     return 0 if grid.has_tie?
