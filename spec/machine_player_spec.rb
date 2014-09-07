@@ -39,5 +39,25 @@ describe MachinePlayer do
         expect([0,2,4,6]).to include(machine_player.play(grid, human_player))
       end
     end
+
+    context 'when adversary is one play ahead to win' do
+      it 'blocks its move' do
+        grid.mark_cell(0, human_player.initial)
+        grid.mark_cell(3, human_player.initial)
+        grid.mark_cell(4, machine_player.initial)
+        expect(machine_player.play(grid, human_player)).to eq(6)
+      end
+    end
+
+    context 'when it is one play ahead to win' do
+      it 'does the correct play to win' do
+        grid.mark_cell(0, human_player.initial)
+        grid.mark_cell(3, human_player.initial)
+        grid.mark_cell(7, human_player.initial)
+        grid.mark_cell(4, machine_player.initial)
+        grid.mark_cell(6, machine_player.initial)
+        expect(machine_player.play(grid, human_player)).to eq(2)
+      end
+    end
   end
 end

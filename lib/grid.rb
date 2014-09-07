@@ -46,7 +46,7 @@ class Grid
     end
     nil
   end
-    
+      
   def has_tie?
     free_cells.size == 0
   end
