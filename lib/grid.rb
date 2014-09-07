@@ -51,7 +51,7 @@ class Grid
     free_cells.size == 0
   end
 
-  def remove(cell_number)
+  def remove_cell(cell_number)
     status[cell_number] = nil
   end
 
