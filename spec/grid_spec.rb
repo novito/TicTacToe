@@ -24,20 +24,20 @@ describe 'Grid' do
     end
   end
 
-  describe '#has_winner?' do
+  describe 'winner' do
     context 'when there is a winner' do
-      it 'returns true' do
+      it 'returns the winner initial' do
         (0..2).each do |c|
           grid.mark_cell(c, 'J')
         end
 
-        expect(grid.has_winner?).to be(true)
+        expect(grid.winner).to eq('J')
       end
     end
 
     context 'when there is no winner' do
-      it 'returns false' do
-        expect(grid.has_winner?).to be(false)
+      it 'returns nil' do
+        expect(grid.winner).to be_nil
       end
     end
   end
