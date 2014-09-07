@@ -38,19 +38,25 @@ class Grid
     status.each_index.select { |i| status[i].nil? }
   end
 
-  def has_winner?
-    winner_combinations.each do |win_comb|
-      matching_values = win_comb.map { |cell_number| status[cell_number] }
-      if matching_values.uniq.length == 1 && !matching_values.first.nil?
-        return true
-      end
+  def winner
+    winner_combinations.each do |row|
+      values = row.map { |cell| status[cell] }
+      unique_values = values.uniq
+      return unique_values.first if unique_values && unique_values.size == 1
     end
-
-    return false
+    nil
   end
-
+    
   def has_tie?
     free_cells.size == 0
+  end
+
+  def remove(cell_number)
+    status[cell_number] = nil
+  end
+
+  def empty?
+    free_cells.size == size
   end
 
   private

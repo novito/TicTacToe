@@ -24,7 +24,7 @@ describe 'Grid' do
     end
   end
 
-  describe 'winner' do
+  describe '#winner' do
     context 'when there is a winner' do
       it 'returns the winner initial' do
         (0..2).each do |c|
@@ -39,6 +39,14 @@ describe 'Grid' do
       it 'returns nil' do
         expect(grid.winner).to be_nil
       end
+    end
+  end
+
+  describe '#remove_cell' do
+    it 'sets the given cell to nil' do
+      grid.mark_cell(0, 'J')
+      grid.remove_cell(0)
+      expect(grid.status[0]).to be_nil
     end
   end
 end
