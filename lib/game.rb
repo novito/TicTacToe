@@ -39,7 +39,7 @@ class Game
     cell_number = current_player.play(grid, adversary)
     grid.mark_cell(cell_number, current_player.initial)
 
-    if grid.has_winner?
+    if grid.winner
       finish(current_player)
     elsif grid.has_tie?
       finish
@@ -49,6 +49,7 @@ class Game
   end
 
   def finish(winner = nil)
-    winner.nil? ? "Nobody wins. It's a tie!" : "We have a winner! Congrats #{winner.name}"
+    grid.draw
+    winner.nil? ? puts("Nobody wins. It's a tie!") : puts("We have a winner! Congrats #{winner.name}")
   end
 end
