@@ -49,4 +49,19 @@ describe 'Grid' do
       expect(grid.status[0]).to be_nil
     end
   end
+
+  describe '#empty?' do
+    context 'when grid is empty' do
+      it 'returns true' do
+        expect(grid.empty?).to be true
+      end
+    end
+
+    context 'when grid is not empty' do
+      it 'returns false' do
+        grid.mark_cell(0, 'J')
+        expect(grid.empty?).to be false
+      end
+    end
+  end
 end
