@@ -3,7 +3,7 @@ require 'machine_player'
 require 'grid'
 
 class Game
-  attr_reader :human_player, :machine_player, :grid, :starter
+  attr_reader :human_player, :machine_player, :grid
 
   def initialize
     @grid = Grid.new
@@ -13,6 +13,12 @@ class Game
     puts '#########################################'
     puts '#### Welcome to the Tic-Tac-Toe game ####'
     puts '#########################################'
+    puts 
+    puts '#########################################################'
+    puts '#### This is the grid you are going to be playing on ####'
+    puts '#########################################################'
+
+    grid.draw_example
   end
 
   def set_human_player
@@ -28,7 +34,7 @@ class Game
   end
 
   def start
-    print "Do you want to start? (y/n):"
+    print "Do you want to be the first to move? (y/n):"
     human_starts = gets.chomp
     human_starts[0].downcase == 'y' ? play(human_player, machine_player) : play(machine_player, human_player)
   end

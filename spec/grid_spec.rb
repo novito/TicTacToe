@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'grid'
 
 describe 'Grid' do
-  let(:grid) { Grid.new }
+  let(:grid) { build(:grid) }
 
   describe '#dimension' do
     it 'returns the dimension of the grid' do

@@ -26,9 +26,9 @@ class MachinePlayer < Player
     end
 
     if depth == 0
-      return scores.max_by { |cell_number, score| score }[0]
+      return scores.max_by { |cell_number, score| score }.first
     else
-      return scores.max_by { |cell_number, score| score }[1]
+      return scores.max_by { |cell_number, score| score }.last
     end
   end
 end

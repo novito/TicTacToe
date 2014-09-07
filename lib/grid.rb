@@ -19,9 +19,12 @@ class Grid
     dimension * dimension
   end
 
-  def draw
-    filled_status = fill_empty_cells
-    matrix_status = status_to_matrix(filled_status)
+  def draw_example
+    draw(cells_with_index)
+  end
+
+  def draw(grid_to_draw = fill_empty_cells)
+    matrix_status = status_to_matrix(grid_to_draw)
     column_separated = separate_columns(matrix_status)
     row_and_column_separated = separate_rows(column_separated)
 
@@ -60,6 +63,10 @@ class Grid
   end
 
   private
+
+  def cells_with_index
+    0..status.size-1
+  end
 
   def fill_empty_cells
     status.map { |cell| cell.nil? ? ' ' : cell }
